@@ -1,0 +1,58 @@
+{% extends 'person/base.html' %}
+<title>{% block title %} Test {% endblock %}</title>
+
+{% block body %}
+
+{% load i18n %}
+
+
+<h2>&nbsp; Test Results For {{ user }}</h2>
+
+{% if vote_list %}
+
+    <span style="max-width:500px;"> bla-bla-bla text about results, and picture with coordinates</span>
+<br><br>
+    <p><img src="s1.jpg"></p>
+
+<table>
+<tr>
+    <th>Number&nbsp;</th>
+    <th>&nbsp; &nbsp; Question   </th>
+    <th>&nbsp;&nbsp; Answer</th>
+
+</tr>
+ {% with 0 as i %}
+
+    {% for vote in vote_list.all %}
+        {% if user == vote.user %}
+            <tr>
+        <td style="max-width:150px;"><span>{{ vote.question.id }}. </span></td>
+
+        <td style="max-width:550px;"><span style="max-width:500px;"><p>{{ vote.question }}</p></span></td>
+        <td><p>{{ vote.choice.choice }}</p></td>
+
+            </tr>
+
+
+
+        {% endif %}
+    {% endfor %}
+
+
+{% endwith %}
+
+</table>
+
+
+{% else %}
+{% trans "There are no results, You haven't filled the test yet" %}
+<a href="{% url 'ptest:detail' 1 %}">Begin Test</a>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+

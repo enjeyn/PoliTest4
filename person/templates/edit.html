@@ -1,0 +1,10 @@
+{% extends "person/base.html" %}
+{% block title %} Edit {{ profile.name }}{% endblock %}
+
+{% block body %}
+   <form action="{% url 'person:edit' profile.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        <input type = "submit" value="Save Changes">
+    </form>
+{% endblock %}

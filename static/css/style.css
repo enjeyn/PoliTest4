@@ -1,0 +1,10 @@
+
+*{padding:0; margin:0;}
+body{font-family: 'Rokkitt', serif; font-size:18px; background:lemonchiffon; color:darkslategrey;}
+img{border:none;}
+h1{ font-family: 'Lobster Two', cursive; font-size:26px; color:darkorange; font-weight:normal;}
+h2{ font-family: 'Rokkitt', cursive; font-size:23px; color:#d65a3d; font-weight:normal;}
+p{font-family: 'Lobster Two', serif; font-size:16px; color:darkslategrey; font-weight:normal;}
+a{text-decoration:fuchsia; font-family: 'Rokkitt', cursive; color:mediumblue;}
+a:hover{color:darkorange;}
+th{ font-family: 'Rokkitt', cursive; font-size:23px; color:#d65a3d; font-weight:normal;}

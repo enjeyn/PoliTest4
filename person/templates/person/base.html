@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}User{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'images/girchi2.jpg' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block home %}{% endblock %}"><a href="{% url 'person:home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Home&nbsp;&nbsp;</a>
+                </li>
+
+            <li class="{% block test %}{% endblock %}"><a href="{% url 'ptest:list' %}"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp; Test&nbsp;&nbsp;</a>
+
+             {% if user.is_authenticated %}
+
+                <li><a href="{% url 'person:logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout</a></li>
+             {% else %}
+                <li><a href="{% url 'person:register' %}"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span>&nbsp; Register</a></li>
+                <li><a href="{% url 'person:login' %}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login</a></li>
+             {% endif %}
+
+            </ul>
+
+
+
+
+         <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'person:home' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+
+<h4>
+{% if user.is_authenticated %} You are logged as {{ user.username }}{% else %}You are not logged in{% endif %}<br><br>
+</h4>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "person/base.html" %}
+{% block title %} Login {% endblock %}
+
+{%  block body %}
+
+      <ul>
+
+        {% for profile in profiles %}
+           <h1>   Welcome!</h1>
+            <li><a href="{% url 'person:details' profile.id %}">{{ profile.name }}</a> </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Login:</h1>
+    <form action="{% url 'person:login' %}" method="post">
+        {% csrf_token %}
+        Username: <input type="text" name='username'><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Login">
+    </form>
+
+{% endblock %}

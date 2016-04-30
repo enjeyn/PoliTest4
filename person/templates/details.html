@@ -1,0 +1,36 @@
+{% extends 'person/base.html' %}
+
+{% block title %}
+    {{ profile.name }}
+{% endblock %}
+
+{% block body %}
+    <h2> {{ profile.name }}</h2><a href="{% url 'person:edit' profile.id %}">&nbsp;&nbsp;&nbsp; Edit</a><br><br>
+    <a href="{% url 'ptest:result' %}">&nbsp;&nbsp;&nbsp;  Test Results</a><br><br>
+
+    {% if profile.avatar %}
+        <img src="/{{ profile.avatar }}" alt=""  height="200" width="200" ><br>
+    {% else %}
+        <p>No image</p><br>
+    {% endif %}
+    {% if  profile.birth_date  %}
+    <i> &nbsp;&nbsp;{{ profile.birth_date }}</i> <br>
+    {% endif %}
+  {% if  profile.sex  %}
+    <i> &nbsp;&nbsp;{{ profile.sex}}</i> <br>
+    {% endif %}
+  {% if  profile.region  %}
+    <i> &nbsp;&nbsp;{{ profile.region }}</i> <br>
+    {% endif %}
+  {% if  profile.ideology  %}
+    <i> &nbsp;&nbsp;{{ profile.ideology }}</i> <br>
+    {% endif %}
+  {% if  profile.religion  %}
+    <i> &nbsp;&nbsp;{{ profile.religion }}</i> <br>
+    {% endif %}
+  {% if  profile.about  %}
+    <i> &nbsp;&nbsp;{{ profile.about }} </i><br>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'person/base.html' %}
+<title>{% block title %}Album Details  {% endblock %}</title>
+
+{% block body %}
+
+
+{% load i18n %}
+
+<h3>&nbsp;&nbsp;&nbsp; {{ question.id }}. {{question.question}}</h3>
+ {% if question.description %}
+     <a href="{{question.description}}" target="_blank" >&nbsp;&nbsp;&nbsp; Additional Information (video)</a>
+    {% endif %}
+    <br>
+
+
+<form action="{% url 'ptest:vote' question.id %}" method="post">
+    {% csrf_token %}
+
+    {% for choice in question.choice_set.all %}
+
+    <label class="radio"><input type="radio" name="choice_pk" value="{{choice.id}}"> {{choice.choice}}</label>
+    {% endfor %}
+    <br>
+
+
+   <input type="submit" class="btn btn-primary" value="{% trans "Select" %}">
+
+
+    <br><br>
+     <area>
+        {% if question.id == 1 %}
+    <a href="{% url 'ptest:detail' question.id|add:1 %}">&nbsp;Next Question&nbsp;</a><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        {% elif question.id == 8 %}
+
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span><a href="{% url 'ptest:detail' question.id|add:-1 %}">&nbsp;Previous Question</a>&nbsp;&nbsp;&nbsp;
+
+            <a href="{% url 'ptest:result' %}">&nbsp;See Results&nbsp;</a><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;
+   {% else %}
+             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span><a href="{% url 'ptest:detail' question.id|add:-1 %}">&nbsp;Previous Question</a>&nbsp;&nbsp;&nbsp;
+
+     <a href="{% url 'ptest:detail' question.id|add:1 %}">&nbsp;Next Question&nbsp;</a><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+            {% endif %}
+
+</form>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'person/base.html' %}
+<title>{% block title %} Test {% endblock %}</title>
+
+{% block body %}
+
+{% load i18n %}
+
+
+<a href="https://www.youtube.com/watch?v=j_k_k-bHigM" target="_blank" > Youtube link, additional info</a>
+
+ {% if user.is_authenticated %}
+
+
+     <h3>Instruction:</h3>
+    <p>pick a question, select answer and click "next Question" / "previous Question"</p>
+    <p>each user has one attempt to answer a particular question</p>
+     <h2><a href="{% url 'ptest:detail' 1 %}">Begin Test</a></h2><br>
+
+     <h2>{% trans "Questions List" %}</h2><br>
+    <ol>
+        {% for question in question_list.all %}
+        <li>{{question.question}}</li><br>
+        {% endfor %}
+    </ol>
+{% else %}
+    <h1>Please, <a href="{% url 'person:login' %}" > Login</a> to begin test<h1>
+{% endif %}
+
+{% endblock %}

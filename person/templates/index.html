@@ -1,0 +1,17 @@
+{% extends 'person/base.html' %}
+
+{% block title %} Home {% endblock %}
+{% block body %}
+<br>
+    <h1>   Welcome!</h1><br>
+      <ul>
+
+        {% for profile in profiles %}
+
+            <li><a href="{% url 'person:details' profile.id %}"><span class="glyphicon glyphicon-expand aria-hidden=true"></span>&nbsp;{{ profile.name }}</a> </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
